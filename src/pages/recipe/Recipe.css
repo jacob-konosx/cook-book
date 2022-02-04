@@ -1,0 +1,18 @@
+.singleRecipe {
+	background-color: #ededed;
+	margin: auto;
+	width: 60%;
+	padding: 10px;
+	margin-top: 40px;
+	border-radius: 5px;
+	text-align: center;
+}
+.singleRecipe p {
+	font-size: 20px;
+}
+.singleRecipe h2 {
+	font-size: 30px;
+}
+.ingredient {
+	color: #aba9a9;
+}

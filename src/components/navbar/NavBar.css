@@ -1,0 +1,49 @@
+.navbar {
+	height: 60px;
+	width: 100%;
+	display: flex; /* flex (or Flexbox) divs automatically inner elements into a row */
+	justify-content: space-around; /* Justify content lets you determine how the inner items behave on an x axis in a Flexbox */
+	align-items: center; /* Align items lets you determine the alignment of inner elements on a Y axis in a flexbox. In this case, you're centering the items in the middle. */
+	background-color: #58249c;
+	color: white;
+}
+
+.navbar-menu {
+	/* Create a container for the navbar-menu items (excludes things you don't want users to click on_. In this case, this should include your links, divider, and logo */
+	display: flex;
+	align-items: center;
+}
+h1 {
+	text-align: left;
+}
+.navbar-menu ul {
+	/* Align items horizontally again for the link list */
+	display: flex;
+	justify-content: center;
+	list-style: none;
+	align-items: center;
+}
+
+.navbar-menu a {
+	/* Basic link styling */
+	border: 1px solid white;
+	text-decoration: none;
+	color: white;
+	transition: all 0.2s ease;
+	background-color: #58249c;
+	border-radius: 5px;
+	/* padding: 6px; */
+
+	padding: 0.4em;
+	padding-bottom: 7px;
+	margin-left: 10px;
+	position: relative;
+}
+
+.navbar-menu a:hover {
+	color: #21abde;
+}
+.navbar-logo a {
+	text-decoration: none;
+	color: white;
+}
