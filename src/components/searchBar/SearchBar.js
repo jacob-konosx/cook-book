@@ -6,7 +6,7 @@ const SearchBar = () => {
 			<label htmlFor="header-search">
 				<span>Search: </span>
 			</label>
-			<input type="text" id="header-search" name="q" />
+			<input type="text" name="q" />
 		</form>
 	);
 };

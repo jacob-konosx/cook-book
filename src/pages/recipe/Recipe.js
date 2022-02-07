@@ -8,6 +8,13 @@ const Recipe = () => {
 
 	const Single = ({ recipes }) => {
 		const singleRecipe = recipes.find((recipe) => recipe.id === id);
+		if (!singleRecipe) {
+			return (
+				<>
+					<h1 style={{ textAlign: "center" }}>Invalid recipe ID</h1>
+				</>
+			);
+		}
 		const { title, ingredients, method, cookingTime } = singleRecipe;
 		return (
 			<div className="singleRecipe">
