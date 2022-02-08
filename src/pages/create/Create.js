@@ -1,12 +1,10 @@
 import React from "react";
 import { useState } from "react/cjs/react.development";
 import { useFetch } from "../../hooks/useFetch";
-import { useNavigate } from "react-router-dom";
 
 import "./Create.css";
 const Create = () => {
 	const { postData } = useFetch("http://localhost:3000/recipes", "POST");
-	const navigate = useNavigate();
 	const [recipe, setRecipe] = useState({
 		title: "",
 		temp: "",
@@ -21,7 +19,6 @@ const Create = () => {
 	};
 	const handleAdd = (e) => {
 		e.preventDefault();
-		console.log(recipe.ingredients);
 		if (recipe.temp) {
 			setRecipe({
 				...recipe,
@@ -30,7 +27,7 @@ const Create = () => {
 			});
 		}
 	};
-	const handleSubmit = async (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (
 			recipe.title &&
@@ -44,8 +41,8 @@ const Create = () => {
 				id: new Date().getTime().toString(),
 			};
 			delete newRecipe.temp;
-			await postData(newRecipe);
-			navigate("/", { replace: Boolean });
+			postData(newRecipe);
+			window.location.href = "/";
 		}
 	};
 	return (
@@ -72,15 +69,19 @@ const Create = () => {
 							value={recipe.temp}
 							onChange={handleChange}
 						/>
-						<button type="submit" onClick={handleAdd}>
+						<button
+							className="add-btn"
+							type="submit"
+							onClick={handleAdd}
+						>
 							Add
 						</button>
-						<label>
-							Current ingredients:
-							{" " + recipe.ingredients.join(", ")}
-						</label>
 					</div>
 
+					<label>
+						Current ingredients:
+						{" " + recipe.ingredients.join(", ")}
+					</label>
 					<div className="form-control">
 						<label htmlFor="method">Recipe method: </label>
 						<input

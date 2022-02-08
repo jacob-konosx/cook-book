@@ -57,6 +57,17 @@
       "method": "visu samet katlā un vāra",
       "cookingTime": "7 minutes",
       "id": "FdqZKBL"
+    },
+    {
+      "title": "vārīti rīsi",
+      "ingredients": [
+        "rīsi",
+        "ūdens",
+        "sāls"
+      ],
+      "method": "uztaisi",
+      "cookingTime": "5 minutes",
+      "id": "1644347382172"
     }
   ]
 }

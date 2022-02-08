@@ -8,10 +8,6 @@ body {
 	background-color: #dcdcdc;
 }
 
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-		monospace;
-}
 .loading {
 	text-align: center;
 	font-size: large;

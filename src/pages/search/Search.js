@@ -17,21 +17,22 @@ const Search = () => {
 	);
 	if (!searchTerm) {
 		return (
-			<h1 style={{ "text-align": "center" }}>
-				Enter a valid search term!
-			</h1>
+			<h1 style={{ textAlign: "center" }}>Enter a valid search term!</h1>
 		);
 	}
 	return (
 		<div>
 			{searchTerm && (
-				<h1 style={{ "text-align": "center" }}>
-					Recipes including {searchTerm}
+				<h1 style={{ textAlign: "center" }}>
+					Recipes including {searchTerm}:
 				</h1>
 			)}
 			{error && <p className="error">{error}</p>}
 			{loading && <p className="loading">Loading...</p>}
 			{data && <RecipesList recipes={data} />}
+			{!loading && (!data || data.length === 0) && (
+				<h2 style={{ textAlign: "center" }}>No recipes found</h2>
+			)}
 		</div>
 	);
 };
