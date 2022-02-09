@@ -84,10 +84,11 @@ const Create = () => {
 					</label>
 					<div className="form-control">
 						<label htmlFor="method">Recipe method: </label>
-						<input
+						<textarea
 							type="text"
 							id="method"
 							name="method"
+							rows="4"
 							value={recipe.method}
 							onChange={handleChange}
 						/>

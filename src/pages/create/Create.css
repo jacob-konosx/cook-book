@@ -14,7 +14,12 @@
 	align-items: center;
 	position: relative;
 }
-
+textarea {
+	background-color: #ededed;
+	border-color: transparent;
+	margin-top: 5px;
+	width: 100%;
+}
 .form h1 {
 	text-align: center;
 	font-size: 33px;
@@ -26,7 +31,7 @@
 
 .btn {
 	/* Basic link styling */
-	border: transparent;
+	border: 2px black solid;
 	color: white;
 	background-color: #58249c;
 	border-radius: 5px;
@@ -46,7 +51,7 @@
 	width: 82%;
 }
 .add-btn {
-	border: transparent;
+	border: 2px black solid;
 	color: white;
 	background-color: #58249c;
 	border-radius: 5px;

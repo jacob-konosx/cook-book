@@ -10,6 +10,7 @@ const RecipesList = ({ recipes }) => {
 						<h2>{recipe.title}</h2>
 						<h4>{recipe.cookingTime} to make.</h4>
 						<p>{recipe.method.substring(0, 100)}...</p>
+						<div className="center"></div>
 						<Link to={`/recipe/${recipe.id}`}>Cook this</Link>
 					</div>
 				);
