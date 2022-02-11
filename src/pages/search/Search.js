@@ -28,7 +28,11 @@ const Search = () => {
 				</h1>
 			)}
 			{error && <p className="error">{error}</p>}
-			{loading && <p className="loading">Loading...</p>}
+			{loading && (
+				<p className="loading">
+					<div className="loader" />
+				</p>
+			)}
 			{data && <RecipesList recipes={data} />}
 			{!loading && (!data || data.length === 0) && (
 				<h2 style={{ textAlign: "center" }}>No recipes found</h2>

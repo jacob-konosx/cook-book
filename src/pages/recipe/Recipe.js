@@ -1,8 +1,10 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
+import { useTheme } from "../../hooks/useTheme";
 import "./Recipe.css";
 const Recipe = () => {
+	const { mode } = useTheme();
 	const { data, loading, error } = useFetch("http://localhost:3000/recipes");
 	const { id } = useParams();
 
@@ -17,7 +19,7 @@ const Recipe = () => {
 		}
 		const { title, ingredients, method, cookingTime } = singleRecipe;
 		return (
-			<div className="singleRecipe">
+			<div className={`singleRecipe ${mode}`}>
 				<h2>{title}</h2>
 				<p>{cookingTime} to cook.</p>
 				<p className="ingredient">{ingredients.join(", ")}</p>
@@ -27,9 +29,13 @@ const Recipe = () => {
 	};
 
 	return (
-		<div>
+		<div className="recipe-view">
 			{error && <p className="error">{error}</p>}
-			{loading && <p className="loading">Loading...</p>}
+			{loading && (
+				<p className="loading">
+					<div className="loader" />
+				</p>
+			)}
 			{data && <Single recipes={data} />}
 		</div>
 	);

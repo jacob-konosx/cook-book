@@ -32,7 +32,7 @@ h1 {
 a h2 {
 	font-size: 30px;
 }
-.navbar-menu a {
+.navbar-menu li a {
 	border: 1px solid white;
 	text-decoration: none;
 	color: white;
@@ -52,4 +52,6 @@ a h2 {
 .navbar-logo a {
 	text-decoration: none;
 	color: white;
+	font-size: 30px;
+	font-weight: bold;
 }
