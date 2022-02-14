@@ -1,6 +1,5 @@
 .navbar {
 	height: 70px;
-	background-color: #58249c;
 	color: white;
 	display: flex;
 	justify-content: space-around;
@@ -33,10 +32,9 @@ a h2 {
 	font-size: 30px;
 }
 .navbar-menu li a {
-	border: 1px solid white;
+	border: 2px solid white;
 	text-decoration: none;
 	color: white;
-	background-color: #58249c;
 	border-radius: 5px;
 	min-width: 100%;
 	padding: 0.54em;

@@ -2,7 +2,7 @@ import React from "react";
 import { useTheme } from "../../hooks/useTheme";
 import modeImg from "../../assets/mode.png";
 import "./ThemeSelector.css";
-const colors = ["#e46b71", "#99ffff", "#58249c"];
+const colors = ["#e46b71", "#03b7b7", "#58249c"];
 const ThemeSelector = () => {
 	const { changeColor, changeMode, mode } = useTheme();
 
@@ -20,9 +20,20 @@ const ThemeSelector = () => {
 						filter:
 							mode === "dark" ? "invert(100%)" : "invert(20%)",
 					}}
-					width="50"
-					height="50"
 				/>
+			</div>
+			<div className="color-button">
+				{colors.map((c) => {
+					return (
+						<div
+							key={c}
+							onClick={() => {
+								changeColor(c);
+							}}
+							style={{ backgroundColor: c }}
+						></div>
+					);
+				})}
 			</div>
 		</div>
 	);

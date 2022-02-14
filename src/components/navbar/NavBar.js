@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTheme } from "../../hooks/useTheme";
 import SearchBar from "./../searchBar/SearchBar";
 import "./NavBar.css";
 const NavBar = () => {
+	const { color } = useTheme();
 	return (
-		<nav className="navbar">
+		<nav className="navbar" style={{ backgroundColor: color }}>
 			<div className="nav-items">
 				<div className="navbar-logo">
 					<Link to="/">Cook Book</Link>
@@ -14,7 +16,12 @@ const NavBar = () => {
 						<SearchBar />
 
 						<li>
-							<Link to="/create">create recipe</Link>
+							<Link
+								style={{ backgroundColor: color }}
+								to="/create"
+							>
+								create recipe
+							</Link>
 						</li>
 					</ul>
 				</div>
