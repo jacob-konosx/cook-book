@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useEffect } from "react";
 import { useReducer } from "react/cjs/react.development";
 
 export const ThemeContext = createContext();
@@ -26,6 +26,23 @@ export const ThemeProvider = ({ children }) => {
 	const changeColor = (color) => {
 		dispatch({ type: "COLOR", payload: color });
 	};
+	// Data persists between reload
+	useEffect(() => {
+		dispatch({
+			type: "MODE",
+			payload: window.localStorage.getItem("mode"),
+		});
+		dispatch({
+			type: "COLOR",
+			payload: window.localStorage.getItem("color"),
+		});
+	}, []);
+
+	useEffect(() => {
+		window.localStorage.setItem("mode", state.mode);
+		window.localStorage.setItem("color", state.color);
+	}, [state.mode, state.color]);
+
 	return (
 		<ThemeContext.Provider value={{ ...state, changeColor, changeMode }}>
 			{children}
