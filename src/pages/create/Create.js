@@ -1,10 +1,12 @@
 import React from "react";
 import { useState } from "react/cjs/react.development";
 import { useFetch } from "../../hooks/useFetch";
+import { useTheme } from "../../hooks/useTheme";
 
 import "./Create.css";
 const Create = () => {
 	const { postData } = useFetch("http://localhost:3000/recipes", "POST");
+	const { color } = useTheme();
 	const [recipe, setRecipe] = useState({
 		title: "",
 		temp: "",
@@ -73,6 +75,7 @@ const Create = () => {
 							className="add-btn"
 							type="submit"
 							onClick={handleAdd}
+							style={{ backgroundColor: color }}
 						>
 							Add
 						</button>
@@ -106,6 +109,7 @@ const Create = () => {
 						/>
 					</div>
 					<button
+						style={{ backgroundColor: color }}
 						type="submit"
 						className="btn"
 						onClick={handleSubmit}

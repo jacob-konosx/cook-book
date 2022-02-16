@@ -12,7 +12,7 @@ const App = () => {
 	const { mode } = useTheme();
 
 	return (
-		<div className={`App ${mode}`}>
+		<div className={`${mode}`}>
 			<BrowserRouter>
 				<NavBar />
 				<Routes>

@@ -28,14 +28,12 @@ export const ThemeProvider = ({ children }) => {
 	};
 	// Data persists between reload
 	useEffect(() => {
-		dispatch({
-			type: "MODE",
-			payload: window.localStorage.getItem("mode"),
-		});
-		dispatch({
-			type: "COLOR",
-			payload: window.localStorage.getItem("color"),
-		});
+		const localMode = window.localStorage.getItem("mode");
+		const localColor = window.localStorage.getItem("color");
+		if (localColor && localMode) {
+			changeColor(localColor);
+			changeMode(localMode);
+		}
 	}, []);
 
 	useEffect(() => {
