@@ -3,6 +3,7 @@ import { useTheme } from "../../hooks/useTheme";
 import { addDoc, collection } from "firebase/firestore";
 import db from "../../utils/firebase";
 import "./Create.css";
+import { useNavigate } from "react-router-dom";
 const Create = () => {
 	const { color } = useTheme();
 	const [recipe, setRecipe] = useState({
@@ -12,6 +13,8 @@ const Create = () => {
 		method: "",
 		cookingTime: "",
 	});
+	const navigate = useNavigate();
+
 	const recipesCollectionRef = collection(db, "recipes");
 
 	const handleChange = (e) => {
@@ -44,7 +47,7 @@ const Create = () => {
 			};
 			delete newRecipe.temp;
 			await addDoc(recipesCollectionRef, newRecipe);
-			window.location.href = "/";
+			navigate("/");
 		}
 	};
 	return (
