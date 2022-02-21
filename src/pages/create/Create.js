@@ -1,11 +1,9 @@
-import React from "react";
-import { useState } from "react/cjs/react.development";
-import { useFetch } from "../../hooks/useFetch";
+import React, { useState } from "react";
 import { useTheme } from "../../hooks/useTheme";
-
+import { addDoc, collection } from "firebase/firestore";
+import db from "../../utils/firebase";
 import "./Create.css";
 const Create = () => {
-	const { postData } = useFetch("http://localhost:3000/recipes", "POST");
 	const { color } = useTheme();
 	const [recipe, setRecipe] = useState({
 		title: "",
@@ -14,6 +12,8 @@ const Create = () => {
 		method: "",
 		cookingTime: "",
 	});
+	const recipesCollectionRef = collection(db, "recipes");
+
 	const handleChange = (e) => {
 		const name = e.target.name;
 		const value = e.target.value;
@@ -29,7 +29,7 @@ const Create = () => {
 			});
 		}
 	};
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (
 			recipe.title &&
@@ -43,7 +43,7 @@ const Create = () => {
 				id: new Date().getTime().toString(),
 			};
 			delete newRecipe.temp;
-			postData(newRecipe);
+			await addDoc(recipesCollectionRef, newRecipe);
 			window.location.href = "/";
 		}
 	};

@@ -1,11 +1,11 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useFetch } from "../../hooks/useFetch";
+import useFire from "../../hooks/useFire";
 import { useTheme } from "../../hooks/useTheme";
 import "./Recipe.css";
 const Recipe = () => {
 	const { mode } = useTheme();
-	const { data, loading, error } = useFetch("http://localhost:3000/recipes");
+	const { data, loading, error } = useFire();
 	const { id } = useParams();
 
 	const Single = ({ recipes }) => {

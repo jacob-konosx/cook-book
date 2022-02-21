@@ -1,11 +1,11 @@
 import React from "react";
-import { useFetch } from "../../hooks/useFetch";
 import RecipesList from "../../components/recipesList/RecipesList";
 import ThemeSelector from "../../components/themeSelector/ThemeSelector";
 import { useTheme } from "../../hooks/useTheme";
+import useFire from "../../hooks/useFire";
 
 const Home = () => {
-	const { data, loading, error } = useFetch("http://localhost:3000/recipes");
+	const { loading, data, error } = useFire();
 	const { mode } = useTheme();
 
 	return (
