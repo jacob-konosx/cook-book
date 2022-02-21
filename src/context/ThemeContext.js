@@ -1,5 +1,4 @@
-import { createContext, useEffect } from "react";
-import { useReducer } from "react/cjs/react.development";
+import { createContext, useEffect, useReducer } from "react";
 
 export const ThemeContext = createContext();
 

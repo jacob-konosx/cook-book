@@ -23,3 +23,16 @@
 .light {
 	background-color: #dcdcdc;
 }
+.recipe-view .dark {
+	background-color: #424242;
+}
+.recipe-list .dark {
+	background-color: #424242;
+	color: #cccccc;
+}
+.recipe-list .light {
+	background-color: #ededed;
+}
+.recipe-list .light h4 {
+	color: #c0c0c0;
+}

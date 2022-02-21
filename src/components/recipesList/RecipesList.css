@@ -24,7 +24,6 @@
 }
 
 .recipe {
-	background-color: #ededed;
 	text-align: left;
 	padding: 20px;
 	border-radius: 5px;
@@ -32,9 +31,6 @@
 	transition: transform 0.3s ease-in-out;
 }
 
-.recipe h4 {
-	color: #c0c0c0;
-}
 .recipe a {
 	background-color: #cccccc;
 	color: black;
@@ -47,8 +43,4 @@
 }
 .recipe:hover {
 	transform: rotate(5deg);
-}
-.recipe-list .dark {
-	background-color: #424242;
-	color: #cccccc;
 }

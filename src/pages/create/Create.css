@@ -33,7 +33,6 @@ textarea {
 	/* Basic link styling */
 	border: 2px black solid;
 	color: white;
-	background-color: #58249c;
 	border-radius: 5px;
 	font-size: 30px;
 	margin-top: 10px;
@@ -44,8 +43,7 @@ textarea {
 }
 .btn:hover {
 	transition: all 0.2s ease;
-	background-color: white;
-	color: #58249c;
+	color: #080808;
 }
 #temp {
 	width: 82%;
@@ -53,7 +51,6 @@ textarea {
 .add-btn {
 	border: 2px black solid;
 	color: white;
-	background-color: #58249c;
 	border-radius: 5px;
 	font-size: 27px;
 	margin-left: 5px;
@@ -65,6 +62,5 @@ textarea {
 }
 .add-btn:hover {
 	transition: all 0.2s ease;
-	background-color: white;
-	color: #58249c;
+	color: #080808;
 }
