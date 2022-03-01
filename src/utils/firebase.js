@@ -2,13 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore";
 
 const firebaseConfig = {
-	apiKey: "AIzaSyAYlyjMG6k2AZ8OS15Rysx7wiZIeiFXrOo",
-	authDomain: "cook-book-ef205.firebaseapp.com",
-	projectId: "cook-book-ef205",
-	storageBucket: "cook-book-ef205.appspot.com",
-	messagingSenderId: "463318482360",
-	appId: "1:463318482360:web:3ed7d58594755f36fb234d",
-	measurementId: "G-Z0M92P7CCT",
+	apiKey: process.env.API_KEY,
+	authDomain: process.env.AUTH_DOMAIN,
+	projectId: process.env.PROJECT_ID,
+	storageBucket: process.env.STORAGE_BUCKET,
+	messagingSenderId: process.env.MESSAGING_SENDER_ID,
+	appId: process.env.APP_ID,
+	measurementId: process.env.MEASUREMENT_ID,
 };
 
 // Initialize Firebase
