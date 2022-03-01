@@ -44,6 +44,9 @@ const Create = () => {
 				...recipe,
 				cookingTime: `${recipe.cookingTime} minutes`,
 				id: new Date().getTime().toString(),
+				author: localStorage.getItem("loginData")
+					? JSON.parse(localStorage.getItem("loginData")).name
+					: null,
 			};
 			delete newRecipe.temp;
 			await addDoc(recipesCollectionRef, newRecipe);

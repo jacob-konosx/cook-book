@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../hooks/useTheme";
+import GoogleAuth from "../googleAuth/GoogleAuth";
 import SearchBar from "./../searchBar/SearchBar";
+
 import "./NavBar.css";
 const NavBar = () => {
 	const { color } = useTheme();
@@ -22,6 +24,9 @@ const NavBar = () => {
 							>
 								create recipe
 							</Link>
+						</li>
+						<li>
+							<GoogleAuth />
 						</li>
 					</ul>
 				</div>

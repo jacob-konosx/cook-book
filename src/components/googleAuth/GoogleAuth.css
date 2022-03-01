@@ -1,0 +1,26 @@
+.googleLogin {
+	margin-left: 10px;
+}
+.logout {
+	height: 42px;
+	font-size: 16px;
+	border: 2px solid white;
+	text-decoration: none;
+	color: white;
+	border-radius: 5px;
+	padding: 0.54em;
+	margin-left: 10px;
+	cursor: pointer;
+}
+
+.loginContainer img {
+	height: 35px;
+	margin: 0 10px;
+}
+.loginContainer {
+	position: relative;
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
