@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import { useTheme } from "../../hooks/useTheme";
 import { addDoc, collection } from "firebase/firestore";
 import db from "../../utils/firebase";
 import "./Create.css";
 import { useNavigate } from "react-router-dom";
+import Modal from "./Modal";
+import { ModalReducer } from "./ModalReducer";
 const Create = () => {
 	const { color } = useTheme();
 	const [recipe, setRecipe] = useState({
@@ -13,8 +15,11 @@ const Create = () => {
 		method: "",
 		cookingTime: "",
 	});
+	const [state, dispatch] = useReducer(ModalReducer, {
+		isOpen: false,
+		content: "",
+	});
 	const navigate = useNavigate();
-
 	const recipesCollectionRef = collection(db, "recipes");
 
 	const handleChange = (e) => {
@@ -34,12 +39,17 @@ const Create = () => {
 	};
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
 		if (
 			recipe.title &&
 			recipe.ingredients.length > 0 &&
 			recipe.method &&
 			recipe.cookingTime
 		) {
+			if (localStorage.getItem("loginData") === null) {
+				dispatch({ type: "NO_LOGIN" });
+				return;
+			}
 			const newRecipe = {
 				...recipe,
 				cookingTime: `${recipe.cookingTime} minutes`,
@@ -114,6 +124,7 @@ const Create = () => {
 							onChange={handleChange}
 						/>
 					</div>
+
 					<button
 						style={{ backgroundColor: color }}
 						type="submit"
@@ -124,6 +135,12 @@ const Create = () => {
 					</button>
 				</form>
 			</article>
+			{state.isOpen && (
+				<Modal
+					closeModal={() => dispatch({ type: "CLOSE_MODAL" })}
+					modalContent={state.content}
+				/>
+			)}
 		</>
 	);
 };
