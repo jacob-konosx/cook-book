@@ -1,11 +1,11 @@
 import React, { useReducer, useState } from "react";
 import { useTheme } from "../../hooks/useTheme";
-import { addDoc, collection } from "firebase/firestore";
-import db from "../../utils/firebase";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 import "./Create.css";
 import { useNavigate } from "react-router-dom";
 import Modal from "./Modal";
 import { ModalReducer } from "./ModalReducer";
+import app from "../../utils/firebase";
 const Create = () => {
 	const { color } = useTheme();
 	const [recipe, setRecipe] = useState({
@@ -20,6 +20,7 @@ const Create = () => {
 		content: "",
 	});
 	const navigate = useNavigate();
+	const db = getFirestore(app);
 	const recipesCollectionRef = collection(db, "recipes");
 
 	const handleChange = (e) => {

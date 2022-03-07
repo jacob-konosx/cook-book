@@ -1,7 +1,14 @@
 import React, { useState } from "react";
-import GoogleLogin from "react-google-login";
 import { useTheme } from "../../hooks/useTheme";
+import {
+	signInWithPopup,
+	GoogleAuthProvider,
+	getAuth,
+	signOut,
+} from "firebase/auth";
+
 import "./GoogleAuth.css";
+import app from "../../utils/firebase";
 const GoogleAuth = () => {
 	const { color } = useTheme();
 	const [loginData, setLoginData] = useState(
@@ -9,22 +16,31 @@ const GoogleAuth = () => {
 			? JSON.parse(localStorage.getItem("loginData"))
 			: null
 	);
-	const handleFailure = (result) => {
-		alert(result);
-	};
-	const handleLogin = async (googleData) => {
-		const res = await fetch("/api/google-login", {
-			method: "POST",
-			body: JSON.stringify({ token: googleData.tokenId }),
-			headers: { "Content-Type": "application/json" },
-		});
-		const data = await res.json();
-		setLoginData(data);
-		localStorage.setItem("loginData", JSON.stringify(data));
-	};
+	const auth = getAuth(app);
 	const handleLogout = (googleData) => {
-		localStorage.removeItem("loginData");
-		setLoginData(null);
+		signOut(auth)
+			.then(() => {
+				localStorage.removeItem("loginData");
+				setLoginData(null);
+			})
+			.catch((error) => {
+				alert(error);
+			});
+	};
+	const signInWithGoogle = () => {
+		const provider = new GoogleAuthProvider();
+		signInWithPopup(auth, provider)
+			.then((re) => {
+				const { displayName, email, photoURL } = re.user;
+				const data = {
+					name: displayName,
+					email: email,
+					picture: photoURL,
+				};
+				setLoginData(data);
+				localStorage.setItem("loginData", JSON.stringify(data));
+			})
+			.catch((error) => alert(error));
 	};
 	return (
 		<div>
@@ -41,14 +57,14 @@ const GoogleAuth = () => {
 					<h2>{loginData.name}</h2>
 				</div>
 			) : (
-				<div className="googleLogin">
-					<GoogleLogin
-						clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-						buttonText="Login"
-						onSuccess={handleLogin}
-						onFailure={handleFailure}
-						cookiePolicy={"single_host_origin"}
-					/>
+				<div className="loginContainer">
+					<button
+						className="logout"
+						style={{ backgroundColor: color }}
+						onClick={signInWithGoogle}
+					>
+						login
+					</button>
 				</div>
 			)}
 		</div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import db from "../utils/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
+import app from "../utils/firebase";
 
 const useFire = () => {
 	const [loading, setLoading] = useState(false);
@@ -9,6 +9,7 @@ const useFire = () => {
 
 	useEffect(() => {
 		const getData = async () => {
+			const db = getFirestore(app);
 			const recipesCollectionRef = collection(db, "recipes");
 			setLoading(true);
 			try {
