@@ -9,6 +9,7 @@ import {
 
 import "./GoogleAuth.css";
 import app from "../../utils/firebase";
+import { useNavigate } from "react-router-dom";
 const GoogleAuth = () => {
 	const { color } = useTheme();
 	const [loginData, setLoginData] = useState(
@@ -16,12 +17,14 @@ const GoogleAuth = () => {
 			? JSON.parse(localStorage.getItem("loginData"))
 			: null
 	);
+	const navigate = useNavigate();
 	const auth = getAuth(app);
 	const handleLogout = (googleData) => {
 		signOut(auth)
 			.then(() => {
 				localStorage.removeItem("loginData");
 				setLoginData(null);
+				window.location.reload();
 			})
 			.catch((error) => {
 				alert(error);
@@ -31,14 +34,16 @@ const GoogleAuth = () => {
 		const provider = new GoogleAuthProvider();
 		signInWithPopup(auth, provider)
 			.then((re) => {
-				const { displayName, email, photoURL } = re.user;
+				const { displayName, email, photoURL, uid } = re.user;
 				const data = {
 					name: displayName,
 					email: email,
 					picture: photoURL,
+					uid: uid,
 				};
 				setLoginData(data);
 				localStorage.setItem("loginData", JSON.stringify(data));
+				window.location.reload();
 			})
 			.catch((error) => alert(error));
 	};
@@ -49,12 +54,17 @@ const GoogleAuth = () => {
 					<button
 						className="logout"
 						style={{ backgroundColor: color }}
+						onClick={() => navigate("/profile")}
+					>
+						profile
+					</button>
+					<button
+						className="logout"
+						style={{ backgroundColor: color }}
 						onClick={handleLogout}
 					>
 						logout
 					</button>
-					<img src={loginData.picture} alt="profile" />
-					<h2>{loginData.name}</h2>
 				</div>
 			) : (
 				<div className="loginContainer">

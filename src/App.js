@@ -8,6 +8,7 @@ import Search from "./pages/search/Search";
 
 import NavBar from "./components/navbar/NavBar";
 import { useTheme } from "./hooks/useTheme";
+import Profile from "./pages/profile/Profile";
 const App = () => {
 	const { mode } = useTheme();
 
@@ -19,6 +20,7 @@ const App = () => {
 					<Route path="/" element={<Home />} />
 					<Route path="/create" element={<Create />} />
 					<Route path="/search" element={<Search />} />
+					<Route path="/profile" element={<Profile />} />
 					<Route path="/recipe/:id" element={<Recipe />} />
 				</Routes>
 			</BrowserRouter>

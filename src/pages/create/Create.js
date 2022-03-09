@@ -54,9 +54,11 @@ const Create = () => {
 			const newRecipe = {
 				...recipe,
 				cookingTime: `${recipe.cookingTime} minutes`,
-				id: new Date().getTime().toString(),
 				author: localStorage.getItem("loginData")
 					? JSON.parse(localStorage.getItem("loginData")).name
+					: null,
+				uid: localStorage.getItem("loginData")
+					? JSON.parse(localStorage.getItem("loginData")).uid
 					: null,
 			};
 			delete newRecipe.temp;

@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
-import { collection, getDocs, getFirestore } from "firebase/firestore";
+import {
+	collection,
+	getDocs,
+	getFirestore,
+	query,
+	where,
+} from "firebase/firestore";
 import app from "../utils/firebase";
 
-const useFire = () => {
+const useFire = (option = "fetch", search) => {
 	const [loading, setLoading] = useState(false);
 	const [data, setData] = useState(null);
 	const [error, setError] = useState(null);
@@ -10,11 +16,16 @@ const useFire = () => {
 	useEffect(() => {
 		const getData = async () => {
 			const db = getFirestore(app);
-			const recipesCollectionRef = collection(db, "recipes");
+			let recipesCollectionRef = collection(db, "recipes");
 			setLoading(true);
 			try {
+				if (option !== "fetch") {
+					recipesCollectionRef = query(
+						recipesCollectionRef,
+						where(option, "==", search)
+					);
+				}
 				const data = await getDocs(recipesCollectionRef);
-
 				const recipes = data.docs.map((doc) => ({
 					...doc.data(),
 					id: doc.id,
