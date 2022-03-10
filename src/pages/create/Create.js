@@ -3,11 +3,12 @@ import { useTheme } from "../../hooks/useTheme";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import "./Create.css";
 import { useNavigate } from "react-router-dom";
-import Modal from "./Modal";
-import { ModalReducer } from "./ModalReducer";
+
 import app from "../../utils/firebase";
+import { ModalReducer } from "../../components/modal/ModalReducer";
+import Modal from "../../components/modal/Modal";
 const Create = () => {
-	const { color } = useTheme();
+	const { color, mode } = useTheme();
 	const [recipe, setRecipe] = useState({
 		title: "",
 		temp: "",
@@ -66,6 +67,14 @@ const Create = () => {
 			navigate("/");
 		}
 	};
+	const handleIngredient = (ingredient) => {
+		setRecipe((rec) => {
+			return {
+				...rec,
+				ingredients: rec.ingredients.filter((i) => i !== ingredient),
+			};
+		});
+	};
 	return (
 		<>
 			<article className="form">
@@ -101,8 +110,24 @@ const Create = () => {
 					</div>
 
 					<label>
-						Current ingredients:
-						{" " + recipe.ingredients.join(", ")}
+						Current ingredients (Click to remove):
+						<div className="ingredients">
+							{recipe.ingredients.map((ingredient) => {
+								return (
+									<span key={ingredient}>
+										<span
+											className={mode}
+											onClick={() =>
+												handleIngredient(ingredient)
+											}
+										>
+											{ingredient}
+										</span>
+										<span>, </span>
+									</span>
+								);
+							})}
+						</div>
 					</label>
 					<div className="form-control">
 						<label htmlFor="method">Recipe method: </label>

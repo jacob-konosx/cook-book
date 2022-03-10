@@ -10,7 +10,11 @@ const QueryCollection = ({ uid }) => {
 		const conf = window.confirm(`Do you want to delete recipe: ${title}?`);
 		if (conf) {
 			const db = getFirestore(app);
-			await deleteDoc(doc(db, "recipes", `${id}`));
+			try {
+				await deleteDoc(doc(db, "recipes", `${id}`));
+			} catch (error) {
+				window.alert(error);
+			}
 		}
 	};
 	return (
@@ -33,14 +37,14 @@ const QueryCollection = ({ uid }) => {
 							<h2>{title}</h2>
 							<p>{method}...</p>
 
-							<Link to={`/recipe/${id}`}>Cook this</Link>
+							<Link to={`/recipe/${id}`}>View</Link>
 							<a
 								href="/profile"
 								onClick={() => deleteHandler(id, title)}
 							>
 								Delete
 							</a>
-							<a href="/profile">Edit (Coming Soon)</a>
+							<Link to={`/update/${id}`}>Update</Link>
 						</div>
 					);
 				})}

@@ -20,17 +20,3 @@
 .profile img {
 	margin-top: 15px;
 }
-.dark .profileRecipe {
-	border-radius: 10px;
-	border: 2px solid #212121;
-}
-.light .profileRecipe {
-	border-radius: 10px;
-	border: 2px solid #cccccc;
-}
-.light .recipe-view {
-	background-color: #dcdcdc;
-}
-.dark .recipe-view {
-	background-color: #212121;
-}

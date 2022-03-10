@@ -1,0 +1,17 @@
+.modal {
+	position: relative;
+
+	left: 50%;
+	transform: translateX(-50%);
+	background: #fff;
+	display: inline-block;
+	padding: 0.25rem 1rem;
+	border-radius: 0.25rem;
+	text-transform: capitalize;
+	margin-top: 45px;
+}
+.modal p {
+	margin: 0;
+	color: black;
+	font-weight: 500;
+}

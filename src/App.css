@@ -36,3 +36,17 @@
 .recipe-list .light h4 {
 	color: #c0c0c0;
 }
+.dark .profileRecipe {
+	border-radius: 10px;
+	border: 2px solid #212121;
+}
+.light .profileRecipe {
+	border-radius: 10px;
+	border: 2px solid #cccccc;
+}
+.light .recipe-view {
+	background-color: #dcdcdc;
+}
+.dark .recipe-view {
+	background-color: #212121;
+}

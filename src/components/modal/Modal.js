@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./Create.js";
+import "./Modal.css";
 const Modal = ({ modalContent, closeModal }) => {
 	useEffect(() => {
 		setTimeout(() => {

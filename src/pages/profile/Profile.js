@@ -16,7 +16,7 @@ const Profile = () => {
 					<QueryCollection uid={loggedIn.uid} />
 				</div>
 			) : (
-				<h2 style={{ textAlign: "center" }}>Login first!</h2>
+				<h2 style={{ textAlign: "center" }}>Login first</h2>
 			)}
 		</div>
 	);
