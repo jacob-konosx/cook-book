@@ -10,6 +10,16 @@ import {
 import "./GoogleAuth.css";
 import app from "../../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import {
+	addDoc,
+	collection,
+	doc,
+	getDocs,
+	getFirestore,
+	query,
+	setDoc,
+	where,
+} from "firebase/firestore";
 const GoogleAuth = () => {
 	const { color } = useTheme();
 	const [loginData, setLoginData] = useState(
@@ -24,11 +34,38 @@ const GoogleAuth = () => {
 			.then(() => {
 				localStorage.removeItem("loginData");
 				setLoginData(null);
-				window.location.reload();
+				window.location.href = "/";
 			})
 			.catch((error) => {
 				alert(error);
 			});
+	};
+	const getFireUser = async (googleData) => {
+		const db = getFirestore(app);
+		const userCollection = collection(db, "users");
+		const userCollectionQuery = query(
+			userCollection,
+			where("uid", "==", googleData.uid)
+		);
+		const data = await getDocs(userCollectionQuery);
+		const user = data.docs.map((doc) => ({
+			...doc.data(),
+			id: doc.id,
+		}));
+		if (user.length === 1) {
+			setLoginData(user[0]);
+			localStorage.setItem("loginData", JSON.stringify(user[0]));
+		} else {
+			let creationData = {
+				...googleData,
+				description: "Novice Chef",
+			};
+			await setDoc(doc(db, "users", googleData.uid), creationData);
+			creationData["id"] = googleData.uid;
+			setLoginData(creationData);
+			localStorage.setItem("loginData", JSON.stringify(creationData));
+		}
+		window.location.reload();
 	};
 	const signInWithGoogle = () => {
 		const provider = new GoogleAuthProvider();
@@ -41,9 +78,7 @@ const GoogleAuth = () => {
 					picture: photoURL,
 					uid: uid,
 				};
-				setLoginData(data);
-				localStorage.setItem("loginData", JSON.stringify(data));
-				window.location.reload();
+				getFireUser(data);
 			})
 			.catch((error) => alert(error));
 	};

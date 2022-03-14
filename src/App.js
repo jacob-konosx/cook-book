@@ -9,6 +9,8 @@ import NavBar from "./components/navbar/NavBar";
 import { useTheme } from "./hooks/useTheme";
 import Profile from "./pages/profile/Profile";
 import Update from "./pages/update/Update";
+import UserProfile from "./pages/userProfile/UserProfile";
+import UpdateProfile from "./pages/updateProfile/UpdateProfile";
 
 const App = () => {
 	const { mode } = useTheme();
@@ -24,6 +26,8 @@ const App = () => {
 					<Route path="/profile" element={<Profile />} />
 					<Route path="/recipe/:id" element={<Recipe />} />
 					<Route path="/update/:id" element={<Update />} />
+					<Route path="/user/:id" element={<UserProfile />} />
+					<Route path="/profile/update" element={<UpdateProfile />} />
 				</Routes>
 			</BrowserRouter>
 		</div>

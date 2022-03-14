@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "../../hooks/useTheme";
 import "./RecipesList.css";
 const RecipesList = ({ recipes }) => {
 	const { mode } = useTheme();
+	const navigate = useNavigate();
 	return (
 		<div className="recipe-list">
 			{recipes.map((recipe) => {
@@ -13,8 +14,14 @@ const RecipesList = ({ recipes }) => {
 						<h4>{recipe.cookingTime} to make.</h4>
 						<p>{recipe.method.substring(0, 100)}...</p>
 						{recipe.author && (
-							<p style={{ fontSize: 12 }}>
-								Author: {recipe.author}
+							<p
+								style={{ fontSize: 12 }}
+								onClick={() => navigate(`/user/${recipe.uid}`)}
+							>
+								Author:{" "}
+								<span style={{ textDecoration: "underline" }}>
+									{recipe.author}
+								</span>
 							</p>
 						)}
 						<Link to={`/recipe/${recipe.id}`}>Cook this</Link>

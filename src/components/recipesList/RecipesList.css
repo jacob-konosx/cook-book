@@ -42,5 +42,5 @@
 	bottom: 0;
 }
 .recipe:hover {
-	transform: rotate(5deg);
+	transform: rotate(3deg);
 }

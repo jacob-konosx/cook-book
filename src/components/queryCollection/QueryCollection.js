@@ -17,6 +17,10 @@ const QueryCollection = ({ uid }) => {
 			}
 		}
 	};
+	let profilePage = true;
+	if (window.location.href.includes("user")) {
+		profilePage = false;
+	}
 	return (
 		<div>
 			{error && <p className="error">{error}</p>}
@@ -38,13 +42,18 @@ const QueryCollection = ({ uid }) => {
 							<p>{method}...</p>
 
 							<Link to={`/recipe/${id}`}>View</Link>
-							<a
-								href="/profile"
-								onClick={() => deleteHandler(id, title)}
-							>
-								Delete
-							</a>
-							<Link to={`/update/${id}`}>Update</Link>
+
+							{profilePage && (
+								<>
+									<a
+										href="/profile"
+										onClick={() => deleteHandler(id, title)}
+									>
+										Delete
+									</a>
+									<Link to={`/update/${id}`}>Update</Link>
+								</>
+							)}
 						</div>
 					);
 				})}

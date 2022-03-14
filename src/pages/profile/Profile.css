@@ -20,3 +20,18 @@
 .profile img {
 	margin-top: 15px;
 }
+.updateBtn {
+	/* Basic link styling */
+	border: 2px black solid;
+	color: white;
+	border-radius: 5px;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+.updateBtn:hover {
+	transition: all 0.2s ease;
+	color: #080808;
+}
+.profileImg {
+	max-height: 95px;
+}

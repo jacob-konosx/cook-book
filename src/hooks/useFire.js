@@ -8,7 +8,7 @@ import {
 } from "firebase/firestore";
 import app from "../utils/firebase";
 
-const useFire = (option = "fetch", search) => {
+const useFire = (option = "fetch", search, collectionName = "recipes") => {
 	const [loading, setLoading] = useState(false);
 	const [data, setData] = useState(null);
 	const [error, setError] = useState(null);
@@ -16,7 +16,7 @@ const useFire = (option = "fetch", search) => {
 	useEffect(() => {
 		const getData = async () => {
 			const db = getFirestore(app);
-			let recipesCollectionRef = collection(db, "recipes");
+			let recipesCollectionRef = collection(db, collectionName);
 			setLoading(true);
 			try {
 				if (option !== "fetch") {
