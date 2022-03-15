@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from "react";
-import { addDoc, doc, getFirestore, setDoc } from "firebase/firestore";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { useParams, useNavigate } from "react-router-dom";
 
 import app from "../../utils/firebase";
@@ -57,6 +57,26 @@ const Update = () => {
 			recipe.method &&
 			recipe.cookingTime
 		) {
+			//Validate Title
+			if (
+				!/^(?=.{5,50}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._ ]+(?<![_.])$/.test(
+					recipe.title
+				)
+			) {
+				dispatch({
+					type: "ERROR",
+					payload: `Invalid Title: No Special Characters (${recipe.title.length}/5-50 Len)`,
+				});
+				return;
+			}
+			//Validate Method
+			if (!/^(?=.{10,500}$)/.test(recipe.method)) {
+				dispatch({
+					type: "ERROR",
+					payload: `Invalid Method: (${recipe.method.length}/10-500 Len)`,
+				});
+				return;
+			}
 			const newRecipe = {
 				...recipe,
 				cookingTime: `${recipe.cookingTime} minutes`,
@@ -151,7 +171,7 @@ const Update = () => {
 								</label>
 								<div className="form-control">
 									<label htmlFor="method">
-										Recipe method:{" "}
+										Recipe method:
 									</label>
 									<textarea
 										type="text"

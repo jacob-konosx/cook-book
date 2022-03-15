@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import React, { useReducer, useState } from "react";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +16,6 @@ const Update = () => {
 			: null
 	);
 	const { color } = useTheme();
-
 	const [state, dispatch] = useReducer(ModalReducer, {
 		isOpen: false,
 		content: "",
@@ -37,6 +37,47 @@ const Update = () => {
 			loginData.name &&
 			loginData.picture
 		) {
+			//Validate Name
+			if (
+				!/^(?=.{3,25}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._ ]+(?<![_.])$/.test(
+					loginData.name
+				)
+			) {
+				dispatch({
+					type: "ERROR",
+					payload: `Invalid Username: No Special Characters (${loginData.name.length}/3-25 Len)`,
+				});
+				return;
+			}
+			//Validate Email
+			if (
+				!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+					loginData.email
+				)
+			) {
+				dispatch({ type: "ERROR", payload: "Invalid Email" });
+				return;
+			}
+			//Validate Description
+			if (!/^(?=.{5,200}$)/.test(loginData.description)) {
+				dispatch({
+					type: "ERROR",
+					payload: `Invalid Description: (${loginData.description.length}/5-200 Len)`,
+				});
+				return;
+			}
+			//Validate Picture URL
+			if (
+				!/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/.test(
+					loginData.picture
+				)
+			) {
+				dispatch({
+					type: "ERROR",
+					payload: "Invalid Picture URL",
+				});
+				return;
+			}
 			try {
 				await setDoc(doc(db, "users", loginData.id), loginData);
 				localStorage.setItem("loginData", JSON.stringify(loginData));

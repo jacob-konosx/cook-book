@@ -52,6 +52,26 @@ const Create = () => {
 				dispatch({ type: "NO_LOGIN" });
 				return;
 			}
+			//Validate Title
+			if (
+				!/^(?=.{5,50}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._ ]+(?<![_.])$/.test(
+					recipe.title
+				)
+			) {
+				dispatch({
+					type: "ERROR",
+					payload: `Invalid Title: No Special Characters (${recipe.title.length}/5-50 Len)`,
+				});
+				return;
+			}
+			//Validate Method
+			if (!/^(?=.{10,500}$)/.test(recipe.method)) {
+				dispatch({
+					type: "ERROR",
+					payload: `Invalid Method: (${recipe.method.length}/10-500 Len)`,
+				});
+				return;
+			}
 			const newRecipe = {
 				...recipe,
 				cookingTime: `${recipe.cookingTime} minutes`,
