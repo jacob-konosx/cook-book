@@ -31,16 +31,6 @@ h1 {
 a h2 {
 	font-size: 30px;
 }
-.navbar-menu li a {
-	border: 2px solid white;
-	text-decoration: none;
-	color: white;
-	border-radius: 5px;
-	min-width: 100%;
-	padding: 0.54em;
-	margin-left: 10px;
-	white-space: nowrap;
-}
 
 .navbar-logo a {
 	text-decoration: none;

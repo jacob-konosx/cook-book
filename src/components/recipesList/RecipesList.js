@@ -11,19 +11,21 @@ const RecipesList = ({ recipes }) => {
 				return (
 					<div key={recipe.id} className={`recipe ${mode}`}>
 						<h2>{recipe.title}</h2>
-						<h4>{recipe.cookingTime} to make.</h4>
-						<p>{recipe.method.substring(0, 100)}...</p>
-						{recipe.author && (
-							<p
-								style={{ fontSize: 12 }}
+						<h1 style={{ fontSize: 14 }}>
+							Author:{" "}
+							<span
 								onClick={() => navigate(`/user/${recipe.uid}`)}
+								style={{
+									textDecoration: "underline",
+									cursor: "pointer",
+								}}
 							>
-								Author:{" "}
-								<span style={{ textDecoration: "underline" }}>
-									{recipe.author}
-								</span>
-							</p>
-						)}
+								{recipe.author}
+							</span>
+						</h1>
+						<h5>{recipe.cookingTime} to make.</h5>
+						<p>{recipe.method.substring(0, 100)}...</p>
+
 						<Link to={`/recipe/${recipe.id}`}>Cook this</Link>
 					</div>
 				);

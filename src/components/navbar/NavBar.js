@@ -1,11 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "../../hooks/useTheme";
 import GoogleAuth from "../googleAuth/GoogleAuth";
 import SearchBar from "./../searchBar/SearchBar";
 
 import "./NavBar.css";
 const NavBar = () => {
+	const navigate = useNavigate();
 	const { color } = useTheme();
 	return (
 		<nav className="navbar" style={{ backgroundColor: color }}>
@@ -18,12 +19,15 @@ const NavBar = () => {
 						<SearchBar />
 
 						<li>
-							<Link
-								style={{ backgroundColor: color }}
-								to="/create"
-							>
-								create recipe
-							</Link>
+							<div className="loginContainer">
+								<button
+									className="logout"
+									style={{ backgroundColor: color }}
+									onClick={() => navigate("/create")}
+								>
+									create recipe
+								</button>
+							</div>
 						</li>
 						<li>
 							<GoogleAuth />

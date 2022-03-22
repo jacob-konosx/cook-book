@@ -35,7 +35,8 @@ const QueryCollection = ({ uid }) => {
 					return (
 						<div
 							key={id}
-							className={`profileRecipe recipe`}
+							className={` recipe`}
+							id="profileRecipe"
 							style={{ transform: "none" }}
 						>
 							<h2>{title}</h2>

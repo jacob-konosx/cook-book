@@ -36,11 +36,11 @@
 .recipe-list .light h4 {
 	color: #c0c0c0;
 }
-.dark .profileRecipe {
+.dark #profileRecipe {
 	border-radius: 10px;
 	border: 2px solid #212121;
 }
-.light .profileRecipe {
+.light #profileRecipe {
 	border-radius: 10px;
 	border: 2px solid #cccccc;
 }

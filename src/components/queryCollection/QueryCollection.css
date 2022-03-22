@@ -1,9 +1,10 @@
-.profileRecipe p {
+#profileRecipe p {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
 }
-.profileRecipe a {
+#profileRecipe a {
+	position: relative;
 	left: 0;
 	margin-right: 10px;
 }
