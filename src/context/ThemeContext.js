@@ -15,8 +15,8 @@ const themeReducer = (state, { type, payload }) => {
 
 export const ThemeProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(themeReducer, {
-		color: "#58249c",
-		mode: "light",
+		color: window.localStorage.getItem("color") || "#58249c",
+		mode: window.localStorage.getItem("mode") || "light",
 	});
 
 	const changeMode = (mode) => {
@@ -25,15 +25,6 @@ export const ThemeProvider = ({ children }) => {
 	const changeColor = (color) => {
 		dispatch({ type: "COLOR", payload: color });
 	};
-	// Data persists between reload
-	useEffect(() => {
-		const localMode = window.localStorage.getItem("mode");
-		const localColor = window.localStorage.getItem("color");
-		if (localColor && localMode) {
-			changeColor(localColor);
-			changeMode(localMode);
-		}
-	}, []);
 
 	useEffect(() => {
 		window.localStorage.setItem("mode", state.mode);
