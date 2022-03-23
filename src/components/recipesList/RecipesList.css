@@ -29,7 +29,9 @@
 	padding: 20px;
 	border-radius: 5px;
 	margin: 1em;
-	transition: transform 0.3s ease-in-out;
+	-webkit-transition: background-color 400ms linear;
+	-ms-transition: background-color 400ms linear;
+	transition: transform 0.3s ease-in-out, background-color 400ms linear;
 }
 
 .recipe a {

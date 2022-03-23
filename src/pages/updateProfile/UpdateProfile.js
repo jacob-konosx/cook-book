@@ -1,6 +1,15 @@
 /* eslint-disable no-useless-escape */
 import React, { useReducer, useState } from "react";
-import { doc, getFirestore, setDoc } from "firebase/firestore";
+import {
+	collection,
+	doc,
+	getDocs,
+	getFirestore,
+	query,
+	setDoc,
+	where,
+	updateDoc,
+} from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 import app from "../../utils/firebase";
@@ -80,6 +89,12 @@ const Update = () => {
 			}
 			try {
 				await setDoc(doc(db, "users", loginData.id), loginData);
+				if (
+					loginData.name !==
+					JSON.parse(localStorage.getItem("loginData")).name
+				) {
+					updateRecipeName(loginData.uid);
+				}
 				localStorage.setItem("loginData", JSON.stringify(loginData));
 			} catch (error) {
 				if (error.name === "FirebaseError") {
@@ -93,6 +108,26 @@ const Update = () => {
 		}
 	};
 
+	const updateRecipeName = async (id) => {
+		let recipesCollectionRef = collection(db, "recipes");
+		try {
+			recipesCollectionRef = query(
+				recipesCollectionRef,
+				where("uid", "==", id)
+			);
+
+			const data = await getDocs(recipesCollectionRef);
+			const recipes = data.docs.map((doc) => doc.id);
+			recipes.map((id) => {
+				updateDoc(doc(db, "recipes", id), { author: loginData.name });
+			});
+		} catch (error) {
+			console.log(error);
+			if (error.name === "AbortError") {
+				console.log("Fetch aborted!");
+			}
+		}
+	};
 	if (loginData) {
 		return (
 			<>

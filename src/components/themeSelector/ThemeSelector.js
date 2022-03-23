@@ -19,6 +19,7 @@ const ThemeSelector = () => {
 					style={{
 						filter:
 							mode === "dark" ? "invert(100%)" : "invert(20%)",
+						cursor: "pointer",
 					}}
 				/>
 			</div>
@@ -30,7 +31,7 @@ const ThemeSelector = () => {
 							onClick={() => {
 								changeColor(c);
 							}}
-							style={{ backgroundColor: c }}
+							style={{ backgroundColor: c, cursor: "pointer" }}
 						></div>
 					);
 				})}

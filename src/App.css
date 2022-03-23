@@ -19,9 +19,15 @@
 .dark {
 	background-color: #212121;
 	color: #cccccc;
+	-webkit-transition: background-color 400ms linear;
+	-ms-transition: background-color 400ms linear;
+	transition: background-color 400ms linear;
 }
 .light {
 	background-color: #dcdcdc;
+	-webkit-transition: background-color 400ms linear;
+	-ms-transition: background-color 400ms linear;
+	transition: background-color 400ms linear;
 }
 .recipe-view .dark {
 	background-color: #424242;

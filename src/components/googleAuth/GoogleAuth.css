@@ -24,3 +24,8 @@
 	justify-content: space-around;
 	align-items: center;
 }
+.loginContainer button {
+	-webkit-transition: background-color 400ms linear;
+	-ms-transition: background-color 400ms linear;
+	transition: background-color 400ms linear;
+}

@@ -6,6 +6,7 @@ import app from "../../utils/firebase";
 import "./QueryCollection.css";
 const QueryCollection = ({ uid }) => {
 	const { loading, data, error } = useFire("uid", uid);
+
 	const deleteHandler = async (id, title) => {
 		const conf = window.confirm(`Do you want to delete recipe: ${title}?`);
 		if (conf) {

@@ -4,6 +4,9 @@
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
+	-webkit-transition: background-color 400ms linear;
+	-ms-transition: background-color 400ms linear;
+	transition: background-color 400ms linear;
 }
 
 .nav-items {
