@@ -11,7 +11,6 @@ import "./GoogleAuth.css";
 import app from "../../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import {
-	addDoc,
 	collection,
 	doc,
 	getDocs,
